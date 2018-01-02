@@ -13,6 +13,10 @@ gem 'sqlite3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
+gem 'jquery-rails'
+
+gem 'turbolinks'
+
 gem 'devise'
 gem 'omniauth-facebook'
 # Use ActiveModel has_secure_password
@@ -24,6 +28,7 @@ gem 'omniauth-facebook'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails'
 end
 
 group :development do

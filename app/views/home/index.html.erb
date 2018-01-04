@@ -1,2 +1,4 @@
 <h1>Welcome! <%= current_user.email if current_user %></h1>
+<p>Each user can be either a landlord or a tenant.</p>
+<h3>Are you a <%= link_to('landlord', new_landlord_path) %> or a <%= link_to('tenant', new_tenant_path) %> ?
 <%= link_to('Logout', destroy_user_session_path, method: :delete) %> 

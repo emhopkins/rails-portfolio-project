@@ -5,7 +5,6 @@ class LandlordsController < ApplicationController
 	end
 
 	def create
-		# raise landlord_params.inspect
 		@landlord = Landlord.new(name: landlord_params[:name], user: current_user)
 		if @landlord.save
 			@landlord.user.set_landlord_role
@@ -18,7 +17,7 @@ class LandlordsController < ApplicationController
 
 	def show
 		@landlord = Landlord.find(params[:id])
-		@user = @landlord.user
+		@buildings = @landlord.buildings.all
 	end
 
 	private

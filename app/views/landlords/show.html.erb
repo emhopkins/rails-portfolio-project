@@ -1,2 +1,13 @@
 <h2>Landlord Information</h2>
-<%= render 'form', landlord: @landlord %>
+Name: <%= @landlord.name %>
+<br />
+<h4>Buildings</h4>
+<% if @buildings.empty? %>
+	<p>You have no buildings. Would you like to add a building?</p>
+<% else %>
+	<p>Select a building to edit or add a new building</p>
+	<% @buildings.each do |b| %>
+		<%= link_to b.name, edit_building_path(b) %>
+	<% end %>
+<% end %>
+<%= link_to 'Add Building', new_building_path %>

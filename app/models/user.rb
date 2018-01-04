@@ -16,4 +16,9 @@ class User < ApplicationRecord
   	self.role = :landlord
   	self.save
   end
+
+  def set_tenant_role
+  	self.role = :tenant
+  	self.save
+  end
 end

@@ -15,7 +15,6 @@ class BuildingsController < ApplicationController
 	end
 
 	def update
-		# raise building_params.inspect
 		@building = Building.find(params[:id])
 		@building.update_attributes(building_params)
 		if @building.save
@@ -23,7 +22,7 @@ class BuildingsController < ApplicationController
 			redirect_to building_path(@building)
 		else 
 			flash[:notice] = "The building couldn't be saved"
-			redirect_to building_path(@building)
+			render :show
 		end
 	end
 
@@ -33,7 +32,6 @@ class BuildingsController < ApplicationController
 			new_apartment_forms = @building.number_of_apartments - @building.apartments.size
 			new_apartment_forms.times { @building.apartments.build }
 		end
-		# 5.times { @building.apartments.build(unit: '') }
 	end
 
 	private

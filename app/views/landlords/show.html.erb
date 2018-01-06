@@ -6,8 +6,10 @@ Name: <%= @landlord.name %>
 	<p>You have no buildings. Would you like to add a building?</p>
 <% else %>
 	<p>Select a building to edit or add a new building</p>
-	<% @buildings.each do |b| %>
-		<%= link_to b.name, edit_building_path(b) %>
-	<% end %>
+	<ul>
+		<% @buildings.each do |b| %>
+			<li><%= link_to b.name, building_path(b) %></li>
+		<% end %>
+	</ul>
 <% end %>
 <%= link_to 'Add Building', new_building_path %>

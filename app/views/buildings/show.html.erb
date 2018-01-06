@@ -1,0 +1,5 @@
+<% if flash[:notice] %>
+	<div class="notice"><%= flash[:notice] %></div>
+<% end %>
+<h2>Update a building and add apartments</h2>
+<%= render 'form', building: @bulding, apartments: @building.apartments.to_a %>

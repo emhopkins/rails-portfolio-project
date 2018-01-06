@@ -1,4 +1,14 @@
-<h1>Welcome! <%= current_user.email if current_user %></h1>
-<p>Each user can be either a landlord or a tenant.</p>
-<h3>Are you a <%= link_to('landlord', new_landlord_path) %> or a <%= link_to('tenant', new_tenant_path) %> ?
-<%= link_to('Logout', destroy_user_session_path, method: :delete) %> 
+<h1>Welcome to the Apartment Manager! </h1> 
+<% if current_user %>
+	<% if current_user.role.empty? %>
+		<p>Each user can be either a landlord or a tenant.</p>
+		<h3>Are you a <%= link_to('landlord', new_landlord_path) %> or a <%= link_to('tenant', new_tenant_path) %> ? </h3>
+	<% else %>
+		<p>Your role is <%= current_user.role %>.</p>
+		<% if current_user.role == 'landlord' %>
+			<%= link_to('Manage Buildings', landlord_path(Landlord.find_by(user: current_user))) %>
+		<% elsif current_user.role == 'tenant' %>
+			<%= link_to('Pay rent', new_tenant_path) %>
+		<% end %>
+	<% end %>
+<% end %>

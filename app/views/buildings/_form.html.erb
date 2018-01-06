@@ -1,0 +1,15 @@
+<%= form_for @building do |f| %>
+	Name: <%= f.text_field :name %><br /><br />
+	Address: <%= f.text_field :address %><br /><br />
+	Number of Apartments: <%= f.text_field :number_of_apartments %><br /><br />
+	<%= f.hidden_field :landlord_id, value: Landlord.find_by(user: current_user).id %>
+	<h4>Apartments:</h4>
+	<%= f.fields_for :apartments, @building.apartments do |a| %>
+		Unit: <%= a.text_field :unit %><br /><br /> 
+		Max Occupants: <%= a.text_field :max_occupants %><br /><br /> 
+		Rent: <%= a.text_field :rent %><br /><br /> 
+		Description: <%= a.text_field :description %><br /><br /> 
+		<br /> 
+ 	<% end %> 
+    <%= f.submit %>
+<% end %>

@@ -8,8 +8,8 @@ Name: <%= @landlord.name %>
 	<p>Select a building to edit or add a new building</p>
 	<ul>
 		<% @buildings.each do |b| %>
-			<li><%= link_to b.name, building_path(b) %></li>
+			<li><%= link_to b.name, landlord_building_path(@landlord, b) %></li>
 		<% end %>
 	</ul>
 <% end %>
-<%= link_to 'Add Building', new_building_path %>
+<%= link_to 'Add Building', new_landlord_building_path(@landlord) %>

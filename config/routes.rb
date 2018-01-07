@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :apartments
-  resources :buildings
+  resources :landlords do
+  	resources :buildings do 
+  	  resources :apartments
+    end
+  end
   resources :tenants
-  resources :landlords
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   root 'home#index'

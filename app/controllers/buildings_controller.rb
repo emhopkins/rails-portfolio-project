@@ -1,6 +1,7 @@
 class BuildingsController < ApplicationController
 	def new
 		@building = Building.new
+		@url = new_landlord_building_path
 	end
 
 	def create
@@ -19,7 +20,7 @@ class BuildingsController < ApplicationController
 		@building.update_attributes(building_params)
 		if @building.save
 			flash[:notice] = "The building was successfully saved"
-			redirect_to building_path(@building)
+			redirect_to landlord_building_path(@building.landlord, @building)
 		else 
 			flash[:notice] = "The building couldn't be saved"
 			render :show
@@ -28,6 +29,7 @@ class BuildingsController < ApplicationController
 
 	def show
 		@building = Building.find(params[:id])
+		@url = landlord_building_path
 		if @building.apartments.size < @building.number_of_apartments
 			new_apartment_forms = @building.number_of_apartments - @building.apartments.size
 			new_apartment_forms.times { @building.apartments.build }

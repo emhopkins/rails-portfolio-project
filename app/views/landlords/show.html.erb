@@ -5,11 +5,21 @@ Name: <%= @landlord.name %>
 <% if @buildings.empty? %>
 	<p>You have no buildings. Would you like to add a building?</p>
 <% else %>
-	<p>Select a building to edit or add a new building</p>
+	<p>Select a building to edit or add a new building. The buildings are listed in smallest to largest order</p>
 	<ul>
-		<% @buildings.each do |b| %>
+		<% @buildings.smallest_to_largest.each do |b| %>
 			<li><%= link_to b.name, landlord_building_path(@landlord, b) %></li>
 		<% end %>
 	</ul>
 <% end %>
 <%= link_to 'Add Building', new_landlord_building_path(@landlord) %>
+<br />
+<% if @landlord.apartments.can_house_more_than_3_tenants.size > 0 %>
+	<p>These apartments can all house more than 3 tenants:</p>
+	<ul>
+		<% @landlord.apartments.can_house_more_than_3_tenants.each do |a| %>
+			<li><%= "Unit: #{a.unit}, Max Occupants: #{a.max_occupants}, Building Name: #{a.building.name}" %></li>
+		<% end %>
+	</ul>
+<% end %>
+

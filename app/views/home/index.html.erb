@@ -7,8 +7,6 @@
 		<p>Your role is <%= current_user.role %>.</p>
 		<% if current_user.role == 'landlord' %>
 			<%= link_to('Manage Buildings', landlord_path(Landlord.find_by(user: current_user))) %>
-		<% elsif current_user.role == 'tenant' %>
-			<%= link_to('Pay rent', new_tenant_path) %>
 		<% end %>
 	<% end %>
 <% end %>

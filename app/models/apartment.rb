@@ -8,6 +8,8 @@ class Apartment < ApplicationRecord
 	validates_numericality_of :rent
 	accepts_nested_attributes_for :characteristics
 
+	scope :can_house_more_than_3_tenants, -> { where("apartments.max_occupants > ?", 3) }
+
 	def characteristics_attributes=(characteristic_attributes)
 		characteristic_attributes.values.each do |characteristic_attribute|
 		  characteristic = Characteristic.find_or_create_by(characteristic_attribute)

@@ -39,6 +39,6 @@ class BuildingsController < ApplicationController
 	private
 
 	def building_params
-		params.require(:building).permit(:name, :address, :landlord_id, :number_of_apartments, apartments_attributes: [:id, :unit, :rent, :description, :max_occupants, :building_id])
+		params.require(:building).permit(:name, :address, :landlord_id, :number_of_apartments, apartments_attributes: [:id, :unit, :rent, :description, :max_occupants, :building_id, characteristic_ids:[], characteristics_attributes: [:name]])
 	end
 end

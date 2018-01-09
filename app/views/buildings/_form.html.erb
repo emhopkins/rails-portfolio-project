@@ -8,7 +8,12 @@
 		Max Occupants: <%= a.text_field :max_occupants %><br /><br /> 
 		Rent: <%= a.text_field :rent %><br /><br /> 
 		Description: <%= a.text_field :description %><br /><br /> 
-		<br /> 
+		<%= a.collection_check_boxes :characteristic_ids, Characteristic.all, :id, :name %>
+		<%= a.fields_for :characteristics, a.object.characteristics.build do |characteristics_fields| %>
+    		<%= characteristics_fields.text_field :name %>
+    	<% end %> 
+		<br /> <br /> 
+		<h3>----------------------------------------------------------------------------------------</h3>
  	<% end %> 
     <%= f.submit %>
 <% end %>

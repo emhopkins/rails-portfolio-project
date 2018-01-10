@@ -5,4 +5,6 @@
 			<li><%= "Unit: #{a.unit}, Max Occupants: #{a.max_occupants} Building Name: " %><%= link_to( a.building.name, landlord_building_path(@landlord, a.building))%></li>
 		<% end %>
 	</ul>
+<% else %>
+	<p>You have no apartments that can house more than 3 tenants.</p>	
 <% end %>

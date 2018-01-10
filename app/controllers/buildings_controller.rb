@@ -19,7 +19,6 @@ class BuildingsController < ApplicationController
 	end
 
 	def update
-		# raise params.inspect
 		@url =landlord_building_path
 		@building = Building.find(params[:id])
 		@building.update_attributes(building_params)

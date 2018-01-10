@@ -15,7 +15,7 @@ class LandlordsController < ApplicationController
 			redirect_to landlord_path(@landlord)
 		else 
 			flash[:notice] = "The landlord couldn't be saved"
-			redirect_to new_landlord_path
+			render :new
 		end
 	end
 

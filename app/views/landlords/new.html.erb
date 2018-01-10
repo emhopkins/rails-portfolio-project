@@ -1,2 +1,7 @@
 <h2>New Landlord Registration</h2>
+<% if @landlord.errors.any? %>
+  <% @landlord.errors.full_messages.each do |error_message| %>
+    Error: <%= error_message %> <br />
+  <% end %>
+<% end %>
 <%= render 'form', landlord: @landlord %>

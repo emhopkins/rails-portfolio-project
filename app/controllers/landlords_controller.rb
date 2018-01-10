@@ -1,5 +1,9 @@
 class LandlordsController < ApplicationController
 
+	def can_house_more_than_3_tenants
+		@landlord = Landlord.find(params[:id])
+	end
+
 	def new
 		@landlord = Landlord.new
 	end

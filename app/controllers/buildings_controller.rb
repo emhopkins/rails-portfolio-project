@@ -1,21 +1,26 @@
 class BuildingsController < ApplicationController
+
 	def new
+		@landlord = Landlord.find(params[:landlord_id])
 		@building = Building.new
-		@url = new_landlord_building_path
+		@url = new_landlord_building_path(@landlord)
 	end
 
 	def create
-		@building = Building.new
+		@landlord = Landlord.find(params[:id])
+		@building = @landlord.buildings.build 
 		@building.update_attributes(building_params)
 		if @building.save
-			redirect_to building_path(@building)
+			redirect_to landlord_building_path(@building.landlord, @building)
 		else 
 			flash[:notice] = "The building couldn't be saved"
-			redirect_to new_building_path
+			redirect_to new_landlord_building_path(@landlord)
 		end
 	end
 
 	def update
+		# raise params.inspect
+		@url =landlord_building_path
 		@building = Building.find(params[:id])
 		@building.update_attributes(building_params)
 		if @building.save
@@ -23,13 +28,13 @@ class BuildingsController < ApplicationController
 			redirect_to landlord_building_path(@building.landlord, @building)
 		else 
 			flash[:notice] = "The building couldn't be saved"
-			render :show
+			render :show 
 		end
 	end
 
 	def show
 		@building = Building.find(params[:id])
-		@url = landlord_building_path
+		@url =landlord_building_path
 		if @building.apartments.size < @building.number_of_apartments
 			new_apartment_forms = @building.number_of_apartments - @building.apartments.size
 			new_apartment_forms.times { @building.apartments.build }

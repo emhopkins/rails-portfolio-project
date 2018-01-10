@@ -1,8 +1,9 @@
 <h1>Welcome to the Apartment Manager! </h1> 
 <% if current_user %>
-	<% if current_user.role.empty? %>
+	<% if current_user.role.nil? %>
 		<p>Each user can be either a landlord or a tenant.</p>
-		<h3>Are you a <%= link_to('landlord', new_landlord_path) %> or a <%= link_to('tenant', new_tenant_path) %> ? </h3>
+		<h3>Are you a <%= link_to('landlord', new_landlord_path) %> or a tenant? </h3>
+		<p>You can only chose to be a landlord at this time.</p>
 	<% else %>
 		<p>Your role is <%= current_user.role %>.</p>
 		<% if current_user.role == 'landlord' %>

@@ -12,8 +12,10 @@ class Apartment < ApplicationRecord
 
 	def characteristics_attributes=(characteristic_attributes)
 		characteristic_attributes.values.each do |characteristic_attribute|
-		  characteristic = Characteristic.find_or_create_by(characteristic_attribute)
-		  self.characteristics << characteristic
+		  if characteristic_attribute[:name].present?
+		  	characteristic = Characteristic.find_or_create_by(characteristic_attribute)
+		  	self.characteristics << characteristic
+		  end
 		end
 	end
 end

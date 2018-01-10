@@ -1,0 +1,8 @@
+<% if @landlord.apartments.can_house_more_than_3_tenants.size > 0 %>
+	<p>These apartments can all house more than 3 tenants:</p>
+	<ul>
+		<% @landlord.apartments.can_house_more_than_3_tenants.each do |a| %>
+			<li><%= "Unit: #{a.unit}, Max Occupants: #{a.max_occupants} Building Name: " %><%= link_to( a.building.name, landlord_building_path(@landlord, a.building))%></li>
+		<% end %>
+	</ul>
+<% end %>

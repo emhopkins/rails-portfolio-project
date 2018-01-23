@@ -9,10 +9,20 @@
 		Rent: <%= a.text_field :rent %><br /><br /> 
 		Description: <%= a.text_field :description %><br /><br /> 
 		<%= a.collection_check_boxes :characteristic_ids, Characteristic.all, :id, :name %>
-		<%= a.fields_for :characteristics, a.object.characteristics.build do |characteristics_fields| %>
-    		<%= characteristics_fields.text_field :name %>
-    	<% end %> 
-		<br /> <br /> 
+		<br /><br />
+        <%= a.fields_for :characteristics, a.object.characteristics.build do |characteristics_fields| %>
+            <%= label_tag "Add New Characteristic:" %>
+            <%= characteristics_fields.text_field :name %>
+        <% end %>
+        <br /><br />
+		<% if a.object.apartment_characteristics.present? %>
+		    <%= a.fields_for :apartment_characteristics do |c| %>
+		      <%= c.object.characteristic.name %>
+		      - Quantity?
+		      <%= c.text_field :quantity %>
+		      <br />
+		    <% end %>
+	    <% end %>
 		<h3>----------------------------------------------------------------------------------------</h3>
  	<% end %> 
     <%= f.submit %>

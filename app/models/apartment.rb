@@ -6,7 +6,7 @@ class Apartment < ApplicationRecord
 	validates :unit, presence: true
 	validates_uniqueness_of :unit, scope: :building_id
 	validates_numericality_of :rent
-	accepts_nested_attributes_for :characteristics
+	accepts_nested_attributes_for :apartment_characteristics
 
 	scope :can_house_more_than_3_tenants, -> { where("apartments.max_occupants > ?", 3) }
 

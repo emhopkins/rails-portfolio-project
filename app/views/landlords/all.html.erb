@@ -1,0 +1,10 @@
+<% if @landlords.size > 0 %>
+	<p>These are all the buildings: </p>
+	<ul>
+		<% @landlords.each do |l| %>
+			<li><%= l.name %></li>
+		<% end %>
+	</ul>
+<% else %>
+	<p>There are no landlords.</p>	
+<% end %>

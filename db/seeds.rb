@@ -7,12 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Characteristic.create(name: 'Bathtub')
-Characteristic.create(name: '2 bedroom')
+Characteristic.create(name: 'Bedroom')
 Characteristic.create(name: 'Open kitchen')
 Characteristic.create(name: 'New appliances')
 Characteristic.create(name: 'In unit laundry')
 Characteristic.create(name: 'In building laundry')
-Characteristic.create(name: '1 bedroom')
 Characteristic.create(name: 'Master bathroom')
 
 

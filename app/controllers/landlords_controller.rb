@@ -4,6 +4,11 @@ class LandlordsController < ApplicationController
 		@landlord = Landlord.find(params[:id])
 	end
 
+	def all
+		@landlords = Landlord.all
+		render :all
+	end
+
 	def new
 		@landlord = Landlord.new
 	end
